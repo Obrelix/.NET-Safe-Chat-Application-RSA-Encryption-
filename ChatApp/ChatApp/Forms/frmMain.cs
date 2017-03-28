@@ -99,9 +99,10 @@ namespace ChatApp
             }
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void mnuGenerateKeys_Click(object sender, EventArgs e)
         {
-
+            frmGenerateKeys form = new frmGenerateKeys();
+            form.Show();
         }
 
         private void messageCallBack(IAsyncResult aResult)

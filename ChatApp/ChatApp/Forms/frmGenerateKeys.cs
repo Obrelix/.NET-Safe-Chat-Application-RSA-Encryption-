@@ -16,5 +16,13 @@ namespace ChatApp
         {
             InitializeComponent();
         }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            string publicKey, privateKey;
+            RSATools.GenerateKeys(out publicKey, out privateKey);
+            txtPublic.Text = publicKey;
+            txtPrivate.Text = privateKey;
+        }
     }
 }
