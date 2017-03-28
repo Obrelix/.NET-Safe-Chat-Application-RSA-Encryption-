@@ -1,0 +1,12 @@
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\bin\Debug\ChatApp.exe.config
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\bin\Debug\ChatApp.exe
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\bin\Debug\ChatApp.pdb
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\obj\Debug\ChatApp.csprojResolveAssemblyReference.cache
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\obj\Debug\ChatApp.frmMain.resources
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\obj\Debug\ChatApp.Properties.Resources.resources
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.GenerateResource.Cache
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\obj\Debug\ChatApp.exe
+c:\users\obrelix\documents\visual studio 2015\Projects\ChatApp\ChatApp\obj\Debug\ChatApp.pdb
+C:\Users\Obrelix\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\bin\Debug\ChatApp.exe.config
+C:\Users\Obrelix\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.exe
+C:\Users\Obrelix\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.pdb
