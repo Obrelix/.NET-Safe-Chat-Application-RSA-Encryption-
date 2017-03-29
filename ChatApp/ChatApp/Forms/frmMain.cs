@@ -124,11 +124,17 @@ namespace ChatApp
         {
             if (me)
             {
-                rtxtHistory.AppendText(Environment.NewLine + "Me:  " + txt);
+                rtxtHistory.Select(rtxtHistory.TextLength, 0);
+                rtxtHistory.SelectionColor = Color.Green;
+                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ","") + "] Me:  " + txt );
+                rtxtHistory.SelectionAlignment = HorizontalAlignment.Left ;
             }
             else
             {
-                rtxtHistory.AppendText(Environment.NewLine + "Other:  " + txt);
+                rtxtHistory.Select(rtxtHistory.TextLength, 0);
+                rtxtHistory.SelectionColor = Color.Red;
+                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ", "") + "] Other:  " + txt);
+                rtxtHistory.SelectionAlignment = HorizontalAlignment.Left;
             }
             rtxtHistory.SelectionStart = rtxtHistory.Text.Length;
             rtxtHistory.ScrollToCaret();
