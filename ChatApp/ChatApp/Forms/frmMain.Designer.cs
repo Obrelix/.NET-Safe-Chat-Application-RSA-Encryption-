@@ -52,11 +52,11 @@
             this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGenerate = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.rtxtHistory = new System.Windows.Forms.RichTextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pnlProperties = new System.Windows.Forms.Panel();
-            this.mnuProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -66,12 +66,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.groupBox1.BackColor = System.Drawing.Color.DarkSlateGray;
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPortLoacal);
             this.groupBox1.Controls.Add(this.txtIPLocal);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(3, 79);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(150, 70);
@@ -118,7 +119,7 @@
             // 
             this.btnConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnConnect.Location = new System.Drawing.Point(407, 128);
+            this.btnConnect.Location = new System.Drawing.Point(507, 128);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(150, 25);
             this.btnConnect.TabIndex = 6;
@@ -132,15 +133,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtMessage.Location = new System.Drawing.Point(44, 387);
+            this.txtMessage.MaxLength = 100;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(398, 22);
+            this.txtMessage.Size = new System.Drawing.Size(498, 22);
             this.txtMessage.TabIndex = 7;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnSend.Location = new System.Drawing.Point(448, 386);
+            this.btnSend.Location = new System.Drawing.Point(548, 386);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(150, 25);
             this.btnSend.TabIndex = 8;
@@ -150,12 +152,13 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.groupBox2.BackColor = System.Drawing.Color.DarkSlateGray;
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtPortForeign);
             this.groupBox2.Controls.Add(this.txtIPForeign);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(150, 70);
@@ -202,24 +205,25 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.groupBox3.BackColor = System.Drawing.Color.DarkSlateGray;
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.txtRemotesPublic);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.txtUsersPrivate);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupBox3.Location = new System.Drawing.Point(159, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(395, 93);
+            this.groupBox3.Size = new System.Drawing.Size(495, 93);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Add Keys";
+            this.groupBox3.Text = "Add RSA Encryption Keys";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label5.Location = new System.Drawing.Point(6, 51);
+            this.label5.Location = new System.Drawing.Point(316, 52);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(173, 15);
             this.label5.TabIndex = 10;
@@ -234,14 +238,14 @@
             this.txtRemotesPublic.MaxLength = 327670;
             this.txtRemotesPublic.Name = "txtRemotesPublic";
             this.txtRemotesPublic.PasswordChar = '*';
-            this.txtRemotesPublic.Size = new System.Drawing.Size(383, 20);
+            this.txtRemotesPublic.Size = new System.Drawing.Size(483, 20);
             this.txtRemotesPublic.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label6.Location = new System.Drawing.Point(6, 15);
+            this.label6.Location = new System.Drawing.Point(366, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 15);
             this.label6.TabIndex = 11;
@@ -256,14 +260,14 @@
             this.txtUsersPrivate.MaxLength = 327670;
             this.txtUsersPrivate.Name = "txtUsersPrivate";
             this.txtUsersPrivate.PasswordChar = '*';
-            this.txtUsersPrivate.Size = new System.Drawing.Size(383, 20);
+            this.txtUsersPrivate.Size = new System.Drawing.Size(483, 20);
             this.txtUsersPrivate.TabIndex = 9;
             // 
             // btnActivate
             // 
             this.btnActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnActivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnActivate.Location = new System.Drawing.Point(407, 97);
+            this.btnActivate.Location = new System.Drawing.Point(507, 97);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(150, 25);
             this.btnActivate.TabIndex = 12;
@@ -284,7 +288,7 @@
             this.menuToolStripMenuItem});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
-            this.mnuMain.Size = new System.Drawing.Size(644, 25);
+            this.mnuMain.Size = new System.Drawing.Size(744, 25);
             this.mnuMain.TabIndex = 16;
             this.mnuMain.Text = "menuStrip1";
             // 
@@ -304,6 +308,16 @@
             this.mnuGenerate.Text = "&Generate Keys";
             this.mnuGenerate.Click += new System.EventHandler(this.mnuGenerate_Click);
             // 
+            // mnuProperties
+            // 
+            this.mnuProperties.Checked = true;
+            this.mnuProperties.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuProperties.Name = "mnuProperties";
+            this.mnuProperties.Size = new System.Drawing.Size(163, 22);
+            this.mnuProperties.Text = "&Properties";
+            this.mnuProperties.CheckedChanged += new System.EventHandler(this.mnuProperties_CheckedChanged);
+            this.mnuProperties.Click += new System.EventHandler(this.mnuProperties_Click);
+            // 
             // rtxtHistory
             // 
             this.rtxtHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -313,7 +327,7 @@
             this.rtxtHistory.Location = new System.Drawing.Point(44, 189);
             this.rtxtHistory.Name = "rtxtHistory";
             this.rtxtHistory.ReadOnly = true;
-            this.rtxtHistory.Size = new System.Drawing.Size(554, 192);
+            this.rtxtHistory.Size = new System.Drawing.Size(654, 192);
             this.rtxtHistory.TabIndex = 13;
             this.rtxtHistory.Text = "";
             // 
@@ -321,10 +335,11 @@
             // 
             this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtUserName.Location = new System.Drawing.Point(251, 129);
+            this.txtUserName.MaxLength = 8;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(150, 22);
+            this.txtUserName.Size = new System.Drawing.Size(98, 22);
             this.txtUserName.TabIndex = 17;
             // 
             // label7
@@ -351,25 +366,15 @@
             this.pnlProperties.Controls.Add(this.groupBox2);
             this.pnlProperties.Location = new System.Drawing.Point(44, 28);
             this.pnlProperties.Name = "pnlProperties";
-            this.pnlProperties.Size = new System.Drawing.Size(554, 150);
+            this.pnlProperties.Size = new System.Drawing.Size(654, 150);
             this.pnlProperties.TabIndex = 18;
-            // 
-            // mnuProperties
-            // 
-            this.mnuProperties.Checked = true;
-            this.mnuProperties.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mnuProperties.Name = "mnuProperties";
-            this.mnuProperties.Size = new System.Drawing.Size(163, 22);
-            this.mnuProperties.Text = "&Properties";
-            this.mnuProperties.CheckedChanged += new System.EventHandler(this.mnuProperties_CheckedChanged);
-            this.mnuProperties.Click += new System.EventHandler(this.mnuProperties_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(644, 421);
+            this.ClientSize = new System.Drawing.Size(744, 421);
             this.Controls.Add(this.pnlProperties);
             this.Controls.Add(this.rtxtHistory);
             this.Controls.Add(this.btnSend);

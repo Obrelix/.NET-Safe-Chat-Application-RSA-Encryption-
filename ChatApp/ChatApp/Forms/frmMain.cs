@@ -53,8 +53,8 @@ namespace ChatApp
         private void btnConnect_Click(object sender, EventArgs e)
         {
             connect();
-            Username = txtUserName.Text;
-            txtUserName.Enabled = false;
+            //Username = txtUserName.Text;
+            //txtUserName.Enabled = false;
         }
 
         private void connect()
@@ -122,7 +122,7 @@ namespace ChatApp
             {
                 ASCIIEncoding enc = new ASCIIEncoding();
                 byte[] msg = new byte[128];
-                msg = enc.GetBytes(txtmessage);
+                msg = enc.GetBytes(Username + "</User>" + txtmessage);
                 if (encrypted) msg = RSATools.RSAEncrypt(msg, txtRemotesPublic.Text, false);
                 sck.Send(msg);
                 
@@ -140,14 +140,16 @@ namespace ChatApp
             {
                 rtxtHistory.Select(rtxtHistory.TextLength, 0);
                 rtxtHistory.SelectionColor = Color.Green;
-                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ","") + "] Me:  " + txt );
+                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ","") + "] Me:  "+ txt );
                 rtxtHistory.SelectionAlignment = HorizontalAlignment.Left ;
             }
             else
             {
                 rtxtHistory.Select(rtxtHistory.TextLength, 0);
                 rtxtHistory.SelectionColor = Color.Red;
-                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ", "") + "] Other:  " + txt);
+                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ", "") + "] " +
+                    txt.Split(new string[] { "</User>" }, StringSplitOptions.None).First() + ":  " + 
+                    txt.Split(new string[] { "</User>" }, StringSplitOptions.None).Last());
                 rtxtHistory.SelectionAlignment = HorizontalAlignment.Left;
             }
             rtxtHistory.SelectionStart = rtxtHistory.Text.Length;
@@ -194,6 +196,7 @@ namespace ChatApp
         {
             if (frmGenerateKeys.frmActive) txtUsersPrivate.Text = frmGenerateKeys.privateKey;
             else form.Hide();
+            Username = txtUserName.Text;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
