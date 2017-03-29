@@ -26,17 +26,18 @@ namespace ChatApp
             RSATools.GenerateKeys(out publicKey, out privateKey);
             txtPublic.Text = publicKey;
             txtPrivate.Text = privateKey;
-            frmActive = true;
-
         }
 
         private void frmGenerateKeys_FormClosing(object sender, FormClosingEventArgs e)
         {
+            e.Cancel = true;
             frmActive = false;
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void frmGenerateKeys_Load(object sender, EventArgs e)
         {
+            frmActive = true;
             this.Icon = Properties.Resources.key;
         }
     }

@@ -19,6 +19,7 @@ namespace ChatApp
         Socket sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         EndPoint epLocal, epRemote;
         public static bool encrypted = false;
+        string Username;
 
         public frmMain()
         {
@@ -30,6 +31,9 @@ namespace ChatApp
             txtIPForeign.Text = getLocalIP();
             btnSend.Enabled = false;
             playSound(2);
+            Random rnd = new Random();
+            txtUserName.Text = "User" + rnd.Next(1, 1000);
+
         }
         
         private string getLocalIP()
@@ -48,6 +52,13 @@ namespace ChatApp
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            connect();
+            Username = txtUserName.Text;
+            txtUserName.Enabled = false;
+        }
+
+        private void connect()
+        {
             try
             {
                 epLocal = new IPEndPoint(IPAddress.Parse(txtIPLocal.Text), Convert.ToInt32(txtPortLoacal.Text));
@@ -65,15 +76,19 @@ namespace ChatApp
             }
             catch (Exception exc)
             {
+                sck.Disconnect(false);
+                btnConnect.Text = "Connect";
+                btnConnect.Enabled = true;
+                btnSend.Enabled = false;
                 Debug.WriteLine(exc.Message);
-                MessageBox.Show(exc.Message + "   Connect");
+                MessageBox.Show(exc.Message + Environment.NewLine + "Connection Error");
             }
-
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            sendMessage();
+            sendMessage(txtMessage.Text);
+            addText(txtMessage.Text, true);
         }
 
         private void playSound(int soundID = 0)
@@ -101,16 +116,15 @@ namespace ChatApp
             player.Play();
         }
 
-        private void sendMessage()
+        private void sendMessage( string txtmessage)
         {
             try
             {
                 ASCIIEncoding enc = new ASCIIEncoding();
                 byte[] msg = new byte[128];
-                msg = enc.GetBytes(txtMessage.Text);
+                msg = enc.GetBytes(txtmessage);
                 if (encrypted) msg = RSATools.RSAEncrypt(msg, txtRemotesPublic.Text, false);
                 sck.Send(msg);
-                addText(txtMessage.Text, true);
                 
             }
             catch (Exception exc)
@@ -147,7 +161,8 @@ namespace ChatApp
         {
             if(e.KeyData == Keys.Enter)
             {
-                sendMessage();
+                sendMessage(txtMessage.Text);
+                addText(txtMessage.Text, true);
             }
         }
         
@@ -158,26 +173,61 @@ namespace ChatApp
             encrypted = !encrypted;
             btnActivate.Text = (!encrypted) ? "Activate Encryption" : "Deactivate Encryption";
         }
+        frmGenerateKeys form = new frmGenerateKeys();
 
         private void mnuGenerate_Click(object sender, EventArgs e)
         {
-            frmGenerateKeys form = new frmGenerateKeys();
+            frmGenerateKeys.frmActive = true;
+            frmGenerateShow();
+        }
+
+        private void frmGenerateShow()
+        {
+            form.StartPosition = FormStartPosition.Manual;
+            if (this.WindowState == FormWindowState.Maximized) form.Location = new Point(this.Location.X, this.Location.Y);
+            else form.Location = new Point(this.Location.X, this.Location.Y + this.Height);
+            form.Width = this.Width;
             form.Show();
         }
 
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
             if (frmGenerateKeys.frmActive) txtUsersPrivate.Text = frmGenerateKeys.privateKey;
+            else form.Hide();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             this.Icon = Properties.Resources.chat;
         }
+        
 
-        private void rtxtHistory_VisibleChanged(object sender, EventArgs e)
+        private void frmMain_LocationChanged(object sender, EventArgs e)
         {
+            if (frmGenerateKeys.frmActive) frmGenerateShow();
+            else form.Hide();
+        }
 
+        private void mnuProperties_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlProperties.Visible = mnuProperties.Checked;
+            if (!mnuProperties.Checked)
+            {
+                rtxtHistory.Location = new Point(rtxtHistory.Location.X , rtxtHistory.Location.Y - 150);
+                rtxtHistory.Height += 150;
+            }
+            else
+            {
+                rtxtHistory.Location = new Point(rtxtHistory.Location.X, rtxtHistory.Location.Y + 150);
+                rtxtHistory.Height -= 150;
+            }
+            
+            
+        }
+
+        private void mnuProperties_Click(object sender, EventArgs e)
+        {
+            mnuProperties.Checked = !mnuProperties.Checked;
         }
 
         private void messageCallBack(IAsyncResult aResult)
