@@ -49,9 +49,15 @@
             this.txtRemotesPublic = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtUsersPrivate = new System.Windows.Forms.TextBox();
-            this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGenerateKeys = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMain = new System.Windows.Forms.MenuStrip();
+            this.menuToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuGenerate = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -60,6 +66,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPortLoacal);
@@ -92,18 +99,18 @@
             // 
             // txtPortLoacal
             // 
-            this.txtPortLoacal.Location = new System.Drawing.Point(109, 45);
+            this.txtPortLoacal.Location = new System.Drawing.Point(99, 45);
             this.txtPortLoacal.Name = "txtPortLoacal";
-            this.txtPortLoacal.Size = new System.Drawing.Size(30, 22);
+            this.txtPortLoacal.Size = new System.Drawing.Size(40, 22);
             this.txtPortLoacal.TabIndex = 1;
             this.txtPortLoacal.Text = "80";
             this.txtPortLoacal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtIPLocal
             // 
-            this.txtIPLocal.Location = new System.Drawing.Point(64, 19);
+            this.txtIPLocal.Location = new System.Drawing.Point(52, 19);
             this.txtIPLocal.Name = "txtIPLocal";
-            this.txtIPLocal.Size = new System.Drawing.Size(75, 22);
+            this.txtIPLocal.Size = new System.Drawing.Size(87, 22);
             this.txtIPLocal.TabIndex = 0;
             this.txtIPLocal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -155,6 +162,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtPortForeign);
@@ -187,18 +195,18 @@
             // 
             // txtPortForeign
             // 
-            this.txtPortForeign.Location = new System.Drawing.Point(107, 45);
+            this.txtPortForeign.Location = new System.Drawing.Point(99, 45);
             this.txtPortForeign.Name = "txtPortForeign";
-            this.txtPortForeign.Size = new System.Drawing.Size(30, 22);
+            this.txtPortForeign.Size = new System.Drawing.Size(38, 22);
             this.txtPortForeign.TabIndex = 1;
             this.txtPortForeign.Text = "80";
             this.txtPortForeign.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtIPForeign
             // 
-            this.txtIPForeign.Location = new System.Drawing.Point(62, 19);
+            this.txtIPForeign.Location = new System.Drawing.Point(52, 19);
             this.txtIPForeign.Name = "txtIPForeign";
-            this.txtIPForeign.Size = new System.Drawing.Size(75, 22);
+            this.txtIPForeign.Size = new System.Drawing.Size(85, 22);
             this.txtIPForeign.TabIndex = 0;
             this.txtIPForeign.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -206,6 +214,7 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.btnActivate);
             this.groupBox3.Controls.Add(this.txtRemotesPublic);
@@ -272,36 +281,71 @@
             this.txtUsersPrivate.Size = new System.Drawing.Size(478, 20);
             this.txtUsersPrivate.TabIndex = 9;
             // 
-            // mnuMain
-            // 
-            this.mnuMain.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
-            this.mnuMain.Location = new System.Drawing.Point(0, 0);
-            this.mnuMain.Name = "mnuMain";
-            this.mnuMain.Size = new System.Drawing.Size(736, 24);
-            this.mnuMain.TabIndex = 16;
-            this.mnuMain.Text = "menuStrip1";
-            // 
             // menuToolStripMenuItem
             // 
-            this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuGenerateKeys});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
             // mnuGenerateKeys
             // 
             this.mnuGenerateKeys.Name = "mnuGenerateKeys";
-            this.mnuGenerateKeys.Size = new System.Drawing.Size(152, 22);
-            this.mnuGenerateKeys.Text = "&Generate Keys";
-            this.mnuGenerateKeys.Click += new System.EventHandler(this.mnuGenerateKeys_Click);
+            this.mnuGenerateKeys.Size = new System.Drawing.Size(32, 19);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // menuToolStripMenuItem1
+            // 
+            this.menuToolStripMenuItem1.Name = "menuToolStripMenuItem1";
+            this.menuToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // mnuMain
+            // 
+            this.mnuMain.BackColor = System.Drawing.Color.DimGray;
+            this.mnuMain.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuToolStripMenuItem2,
+            this.menuToolStripMenuItem3});
+            this.mnuMain.Location = new System.Drawing.Point(0, 0);
+            this.mnuMain.Name = "mnuMain";
+            this.mnuMain.Size = new System.Drawing.Size(736, 25);
+            this.mnuMain.TabIndex = 16;
+            this.mnuMain.Text = "mnuMain";
+            // 
+            // menuToolStripMenuItem2
+            // 
+            this.menuToolStripMenuItem2.Name = "menuToolStripMenuItem2";
+            this.menuToolStripMenuItem2.Size = new System.Drawing.Size(12, 21);
+            // 
+            // mnuGenerate
+            // 
+            this.mnuGenerate.Name = "mnuGenerate";
+            this.mnuGenerate.Size = new System.Drawing.Size(163, 22);
+            this.mnuGenerate.Text = "&Generate Keys";
+            this.mnuGenerate.Click += new System.EventHandler(this.mnuGenerate_Click);
+            // 
+            // menuToolStripMenuItem3
+            // 
+            this.menuToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generateKeysToolStripMenuItem});
+            this.menuToolStripMenuItem3.Name = "menuToolStripMenuItem3";
+            this.menuToolStripMenuItem3.Size = new System.Drawing.Size(55, 21);
+            this.menuToolStripMenuItem3.Text = "&Menu";
+            // 
+            // generateKeysToolStripMenuItem
+            // 
+            this.generateKeysToolStripMenuItem.Name = "generateKeysToolStripMenuItem";
+            this.generateKeysToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.generateKeysToolStripMenuItem.Text = "&Generate Keys";
+            this.generateKeysToolStripMenuItem.Click += new System.EventHandler(this.mnuGenerate_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(736, 451);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -312,7 +356,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.mnuMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.mnuMain;
             this.Name = "frmMain";
             this.Text = "Safe Chat";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);
@@ -351,9 +394,15 @@
         private System.Windows.Forms.TextBox txtUsersPrivate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtRemotesPublic;
-        private System.Windows.Forms.MenuStrip mnuMain;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuGenerateKeys;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnuGenerate;
+        private System.Windows.Forms.MenuStrip mnuMain;
+        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem generateKeysToolStripMenuItem;
     }
 }
 

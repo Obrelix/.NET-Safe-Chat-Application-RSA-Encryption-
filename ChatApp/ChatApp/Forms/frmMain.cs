@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
+using System.Media;
 
 namespace ChatApp
 {
@@ -30,6 +31,7 @@ namespace ChatApp
             txtIPLocal.Text = getLocalIP();
             txtIPForeign.Text = getLocalIP();
             btnSend.Enabled = false;
+            playSound();
         }
         
         private string getLocalIP()
@@ -76,6 +78,13 @@ namespace ChatApp
             sendMessage();
         }
 
+        private void playSound(int soundID = 0)
+        {
+            System.IO.Stream s = (soundID == 0) ? Properties.Resources.chime_tone : Properties.Resources.sms_alert;
+            SoundPlayer player = new SoundPlayer(s);
+            player.Play();
+        }
+
         private void sendMessage()
         {
             try
@@ -103,17 +112,19 @@ namespace ChatApp
                 sendMessage();
             }
         }
+        
 
-        private void mnuGenerateKeys_Click(object sender, EventArgs e)
-        {
-            frmGenerateKeys form = new frmGenerateKeys();
-            form.Show();
-        }
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
             encrypted = !encrypted;
             btnActivate.Text = (!encrypted) ? "Activate Encryption" : "Deactivate Encryption";
+        }
+
+        private void mnuGenerate_Click(object sender, EventArgs e)
+        {
+            frmGenerateKeys form = new frmGenerateKeys();
+            form.Show();
         }
 
         private void messageCallBack(IAsyncResult aResult)
@@ -128,6 +139,7 @@ namespace ChatApp
                     ASCIIEncoding eEnconding = new ASCIIEncoding();
                     string receivedMessage = eEnconding.GetString(receivedData);
                     lbChatHistory.Items.Add("Other: "+receivedMessage);
+                    playSound(1);
                 }
                 byte[] buffer = new byte[128];
                 sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
