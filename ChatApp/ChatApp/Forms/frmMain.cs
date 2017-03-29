@@ -17,7 +17,10 @@ namespace ChatApp
     {
         Socket sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         EndPoint epLocal, epRemote;
+        public static bool encrypted = false;
 
+        //string publicKey = "<RSAKeyValue><Modulus>6leFgSuURhJra3eo19lRDIKB005lXxjJLlXzzKDptxpj5DPZe7xfkzl6oE8hu4GWisKx+2oeEuCE/30DdxWZoVAwl9E0Toe6DhYe9UlxiqY5g7gaiYT4+MFg5+MSSi9C5ZcpWSLXb+ZxiZBF2fbvau4GmAAGYAOQ2aD3DMcAONc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
+        //string privateKey = "<RSAKeyValue><Modulus>6leFgSuURhJra3eo19lRDIKB005lXxjJLlXzzKDptxpj5DPZe7xfkzl6oE8hu4GWisKx+2oeEuCE/30DdxWZoVAwl9E0Toe6DhYe9UlxiqY5g7gaiYT4+MFg5+MSSi9C5ZcpWSLXb+ZxiZBF2fbvau4GmAAGYAOQ2aD3DMcAONc=</Modulus><Exponent>AQAB</Exponent><P>7al3PRP64beX4u07Go6zVWYYDvi4JcX6mbywb0w53QK8wyffycRvzHY4UFwyCsTGxo/51POCV2JDBDdXqlPOQQ==</P><Q>/Gx5U6J663GAoNuU1a8Q9p7tTMWeo5vv3t0qVdC1Q0Bszp2ERU+D4Hru1zc39F5ULsjWlWwREAELkkRa++5xFw==</Q><DP>JNRaMhDilBALbZMt0ZPDnrxPhiJtBw2DJEflX5oEbYd7ERMgzveuC5VWbL2c06Zi12qAYMvLqxcDI6gf4blTAQ==</DP><DQ>xqHJW2HJHkrDsFD6LqhDTf5Dt5zut8o2mIYrETpZ2ODyfif/dNccbGHwXlSqaFZuIh6SlSRjzNc1ttSpUAQS4w==</DQ><InverseQ>yRtei8+pxVCZ6eulFYW9m+uROATFlDdYBVJU9zhpnk1RfUoKp6SE1BPaSJXj6IkoJY2fo16HS+ZQsaDKKTEoTA==</InverseQ><D>FGZrFla+Bn2VrATThiWCbeWHOhG8jGiYIY2qTBmD+a8f8V6ReQ6UfriwaU004WGuF8VMK4Kjkel0BS5pA1Bg5Q9FPw3DsX7ISMB6TwUIF0/Z+wK8+fj6SkGL+83XApwjJ3HhWj/kCCfp+mclMCRxElMn2ani8TP1WQHKwYqmecE=</D></RSAKeyValue>";
         public frmMain()
         {
             InitializeComponent();
@@ -53,7 +56,7 @@ namespace ChatApp
                 epRemote = new IPEndPoint(IPAddress.Parse(txtIPForeign.Text), Convert.ToInt32(txtPortForeign.Text));
 
                 sck.Connect(epRemote);
-                byte[] buffer = new byte[1500];
+                byte[] buffer = new byte[128];
                 sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
                 btnConnect.Text = "Connected";
                 btnConnect.Enabled = false;
@@ -63,7 +66,7 @@ namespace ChatApp
             catch (Exception exc)
             {
                 Debug.WriteLine(exc.Message);
-                MessageBox.Show(exc.Message);
+                MessageBox.Show(exc.Message + "   Connect");
             }
 
         }
@@ -78,8 +81,9 @@ namespace ChatApp
             try
             {
                 ASCIIEncoding enc = new ASCIIEncoding();
-                byte[] msg = new byte[1500];
+                byte[] msg = new byte[128];
                 msg = enc.GetBytes(txtMessage.Text);
+                if (encrypted) msg = RSATools.RSAEncrypt(msg, txtRemotesPublic.Text, false);
                 sck.Send(msg);
                 lbChatHistory.Items.Add("Me: " + txtMessage.Text);
                 txtMessage.Clear();
@@ -87,9 +91,10 @@ namespace ChatApp
             catch (Exception exc)
             {
                 Debug.WriteLine(exc.Message);
-                MessageBox.Show(exc.Message);
+                MessageBox.Show(exc.Message+"   sendMessage");
             }
         }
+
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
@@ -105,6 +110,12 @@ namespace ChatApp
             form.Show();
         }
 
+        private void btnActivate_Click(object sender, EventArgs e)
+        {
+            encrypted = !encrypted;
+            btnActivate.Text = (!encrypted) ? "Activate Encryption" : "Deactivate Encryption";
+        }
+
         private void messageCallBack(IAsyncResult aResult)
         {
             try
@@ -113,18 +124,18 @@ namespace ChatApp
                 if(size > 0)
                 {
                     byte[] receivedData = (byte[])aResult.AsyncState;
-
+                    if (encrypted) receivedData = RSATools.RSADecrypt(receivedData, txtUsersPrivate.Text, false);
                     ASCIIEncoding eEnconding = new ASCIIEncoding();
                     string receivedMessage = eEnconding.GetString(receivedData);
                     lbChatHistory.Items.Add("Other: "+receivedMessage);
                 }
-                byte[] buffer = new byte[1500];
+                byte[] buffer = new byte[128];
                 sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
             }
             catch(Exception exc)
             {
                 Debug.WriteLine(exc.Message);
-                MessageBox.Show(exc.Message);
+                MessageBox.Show(exc.Message + "   callBack");
             }
 
         }

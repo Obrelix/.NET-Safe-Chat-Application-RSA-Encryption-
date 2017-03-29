@@ -111,12 +111,12 @@
             this.lbChatHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbChatHistory.Font = new System.Drawing.Font("Hobo Std", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbChatHistory.Font = new System.Drawing.Font("Cooper Std Black", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbChatHistory.FormattingEnabled = true;
-            this.lbChatHistory.ItemHeight = 23;
+            this.lbChatHistory.ItemHeight = 20;
             this.lbChatHistory.Location = new System.Drawing.Point(44, 221);
             this.lbChatHistory.Name = "lbChatHistory";
-            this.lbChatHistory.Size = new System.Drawing.Size(646, 188);
+            this.lbChatHistory.Size = new System.Drawing.Size(646, 184);
             this.lbChatHistory.TabIndex = 5;
             // 
             // btnConnect
@@ -137,16 +137,16 @@
             this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.txtMessage.Location = new System.Drawing.Point(44, 417);
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(492, 22);
+            this.txtMessage.Size = new System.Drawing.Size(463, 22);
             this.txtMessage.TabIndex = 7;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnSend.Location = new System.Drawing.Point(542, 416);
+            this.btnSend.Location = new System.Drawing.Point(513, 417);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(148, 23);
+            this.btnSend.Size = new System.Drawing.Size(177, 23);
             this.btnSend.TabIndex = 8;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -231,12 +231,13 @@
             // 
             this.btnActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnActivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnActivate.Location = new System.Drawing.Point(342, 140);
+            this.btnActivate.Location = new System.Drawing.Point(313, 140);
             this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(142, 26);
+            this.btnActivate.Size = new System.Drawing.Size(171, 26);
             this.btnActivate.TabIndex = 12;
             this.btnActivate.Text = "Activate Encryption";
             this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
             // 
             // txtRemotesPublic
             // 
@@ -245,6 +246,7 @@
             this.txtRemotesPublic.Location = new System.Drawing.Point(6, 114);
             this.txtRemotesPublic.MaxLength = 327670;
             this.txtRemotesPublic.Name = "txtRemotesPublic";
+            this.txtRemotesPublic.PasswordChar = '*';
             this.txtRemotesPublic.Size = new System.Drawing.Size(478, 20);
             this.txtRemotesPublic.TabIndex = 8;
             // 

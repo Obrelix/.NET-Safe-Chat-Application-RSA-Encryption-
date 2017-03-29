@@ -24,5 +24,6 @@ namespace ChatApp
             txtPublic.Text = publicKey;
             txtPrivate.Text = privateKey;
         }
+        
     }
 }

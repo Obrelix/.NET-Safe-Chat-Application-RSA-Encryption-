@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ChatApp
 {
@@ -38,7 +39,6 @@ namespace ChatApp
             catch (ArgumentNullException)
             {
                 Debug.WriteLine("Encryption failed.");
-
             }
         }
 
@@ -84,7 +84,8 @@ namespace ChatApp
         {
             try
             {
-                byte[] decryptedData;
+                byte[] decryptedData = new byte[128];
+                //MessageBox.Show("Data lenght" + DataToDecrypt.Length.ToString());
                 //Create a new instance of RSACryptoServiceProvider.
                 using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
                 {
@@ -98,6 +99,8 @@ namespace ChatApp
                         //OAEP padding is only available on Microsoft Windows XP or
                         //later.  
                         decryptedData = RSA.Decrypt(DataToDecrypt, DoOAEPPadding);
+                        ///The method RSA.Decrypt(byte[] array, bool FOAEEP) want array with max lenght 128 bytes
+                        ///this is a problem for very large messages...
                     }
                     finally
                     {
@@ -111,7 +114,7 @@ namespace ChatApp
             catch (CryptographicException e)
             {
                 Debug.WriteLine(e.ToString());
-
+                MessageBox.Show(e.ToString());
                 return null;
             }
 
