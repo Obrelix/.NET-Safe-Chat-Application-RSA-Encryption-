@@ -20,6 +20,7 @@ namespace ChatApp
         EndPoint epLocal, epRemote;
         public static bool encrypted = false;
         string Username;
+        int dataSize;
 
         public frmMain()
         {
@@ -33,7 +34,8 @@ namespace ChatApp
             playSound(2);
             Random rnd = new Random();
             txtUserName.Text = "User" + rnd.Next(1, 1000);
-
+            txtMessage.MaxLength = 100;
+            dataSize = 128;
         }
         
         private string getLocalIP()
@@ -67,7 +69,7 @@ namespace ChatApp
                 epRemote = new IPEndPoint(IPAddress.Parse(txtIPForeign.Text), Convert.ToInt32(txtPortForeign.Text));
 
                 sck.Connect(epRemote);
-                byte[] buffer = new byte[128];
+                byte[] buffer = new byte[dataSize];
                 sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
                 btnConnect.Text = "Connected";
                 btnConnect.Enabled = false;
@@ -121,7 +123,7 @@ namespace ChatApp
             try
             {
                 ASCIIEncoding enc = new ASCIIEncoding();
-                byte[] msg = new byte[128];
+                byte[] msg = new byte[dataSize];
                 msg = enc.GetBytes(Username + "</User>" + txtmessage);
                 if (encrypted) msg = RSATools.RSAEncrypt(msg, txtRemotesPublic.Text, false);
                 sck.Send(msg);
@@ -174,6 +176,9 @@ namespace ChatApp
         {
             encrypted = !encrypted;
             btnActivate.Text = (!encrypted) ? "Activate Encryption" : "Deactivate Encryption";
+            //dataSize = (encrypted) ? 128 : 1500;
+            //txtMessage.MaxLength = (encrypted) ? 100 : 1480;
+            //if (encrypted) MessageBox.Show("Message length decreasing to 100 characters per message!!", "Message Length Decreased", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         frmGenerateKeys form = new frmGenerateKeys();
 
@@ -247,7 +252,7 @@ namespace ChatApp
                     addText(receivedMessage, false);
                     playSound(1);
                 }
-                byte[] buffer = new byte[128];
+                byte[] buffer = new byte[dataSize];
                 sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
             }
             catch(Exception exc)
