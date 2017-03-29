@@ -20,8 +20,6 @@ namespace ChatApp
         EndPoint epLocal, epRemote;
         public static bool encrypted = false;
 
-        //string publicKey = "<RSAKeyValue><Modulus>6leFgSuURhJra3eo19lRDIKB005lXxjJLlXzzKDptxpj5DPZe7xfkzl6oE8hu4GWisKx+2oeEuCE/30DdxWZoVAwl9E0Toe6DhYe9UlxiqY5g7gaiYT4+MFg5+MSSi9C5ZcpWSLXb+ZxiZBF2fbvau4GmAAGYAOQ2aD3DMcAONc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
-        //string privateKey = "<RSAKeyValue><Modulus>6leFgSuURhJra3eo19lRDIKB005lXxjJLlXzzKDptxpj5DPZe7xfkzl6oE8hu4GWisKx+2oeEuCE/30DdxWZoVAwl9E0Toe6DhYe9UlxiqY5g7gaiYT4+MFg5+MSSi9C5ZcpWSLXb+ZxiZBF2fbvau4GmAAGYAOQ2aD3DMcAONc=</Modulus><Exponent>AQAB</Exponent><P>7al3PRP64beX4u07Go6zVWYYDvi4JcX6mbywb0w53QK8wyffycRvzHY4UFwyCsTGxo/51POCV2JDBDdXqlPOQQ==</P><Q>/Gx5U6J663GAoNuU1a8Q9p7tTMWeo5vv3t0qVdC1Q0Bszp2ERU+D4Hru1zc39F5ULsjWlWwREAELkkRa++5xFw==</Q><DP>JNRaMhDilBALbZMt0ZPDnrxPhiJtBw2DJEflX5oEbYd7ERMgzveuC5VWbL2c06Zi12qAYMvLqxcDI6gf4blTAQ==</DP><DQ>xqHJW2HJHkrDsFD6LqhDTf5Dt5zut8o2mIYrETpZ2ODyfif/dNccbGHwXlSqaFZuIh6SlSRjzNc1ttSpUAQS4w==</DQ><InverseQ>yRtei8+pxVCZ6eulFYW9m+uROATFlDdYBVJU9zhpnk1RfUoKp6SE1BPaSJXj6IkoJY2fo16HS+ZQsaDKKTEoTA==</InverseQ><D>FGZrFla+Bn2VrATThiWCbeWHOhG8jGiYIY2qTBmD+a8f8V6ReQ6UfriwaU004WGuF8VMK4Kjkel0BS5pA1Bg5Q9FPw3DsX7ISMB6TwUIF0/Z+wK8+fj6SkGL+83XApwjJ3HhWj/kCCfp+mclMCRxElMn2ani8TP1WQHKwYqmecE=</D></RSAKeyValue>";
         public frmMain()
         {
             InitializeComponent();
@@ -31,7 +29,7 @@ namespace ChatApp
             txtIPLocal.Text = getLocalIP();
             txtIPForeign.Text = getLocalIP();
             btnSend.Enabled = false;
-            playSound();
+            playSound(2);
         }
         
         private string getLocalIP()
@@ -80,7 +78,25 @@ namespace ChatApp
 
         private void playSound(int soundID = 0)
         {
-            System.IO.Stream s = (soundID == 0) ? Properties.Resources.chime_tone : Properties.Resources.sms_alert;
+            System.IO.Stream s;
+            switch (soundID)
+            {
+                case 0:
+                    s = Properties.Resources.chime_tone;
+                    break;
+                case 1:
+                    s = Properties.Resources.sms_alert;
+                    break;
+                case 2:
+                    s = Properties.Resources.iv_notification;
+                    break;
+                case 3:
+                    s = Properties.Resources.alert;
+                    break;
+                default:
+                    s = Properties.Resources.sms_alert;
+                    break;
+            }
             SoundPlayer player = new SoundPlayer(s);
             player.Play();
         }
@@ -94,14 +110,30 @@ namespace ChatApp
                 msg = enc.GetBytes(txtMessage.Text);
                 if (encrypted) msg = RSATools.RSAEncrypt(msg, txtRemotesPublic.Text, false);
                 sck.Send(msg);
-                lbChatHistory.Items.Add("Me: " + txtMessage.Text);
-                txtMessage.Clear();
+                addText(txtMessage.Text, true);
+                
             }
             catch (Exception exc)
             {
                 Debug.WriteLine(exc.Message);
                 MessageBox.Show(exc.Message+"   sendMessage");
             }
+        }
+
+        private void addText(string txt, bool me)
+        {
+            if (me)
+            {
+                rtxtHistory.AppendText(Environment.NewLine + "Me:  " + txt);
+            }
+            else
+            {
+                rtxtHistory.AppendText(Environment.NewLine + "Other:  " + txt);
+            }
+            rtxtHistory.SelectionStart = rtxtHistory.Text.Length;
+            rtxtHistory.ScrollToCaret();
+            txtMessage.Clear();
+            txtMessage.Focus();
         }
 
 
@@ -127,6 +159,21 @@ namespace ChatApp
             form.Show();
         }
 
+        private void tmrCheck_Tick(object sender, EventArgs e)
+        {
+            if (frmGenerateKeys.frmActive) txtUsersPrivate.Text = frmGenerateKeys.privateKey;
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            this.Icon = Properties.Resources.chat;
+        }
+
+        private void rtxtHistory_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void messageCallBack(IAsyncResult aResult)
         {
             try
@@ -138,7 +185,7 @@ namespace ChatApp
                     if (encrypted) receivedData = RSATools.RSADecrypt(receivedData, txtUsersPrivate.Text, false);
                     ASCIIEncoding eEnconding = new ASCIIEncoding();
                     string receivedMessage = eEnconding.GetString(receivedData);
-                    lbChatHistory.Items.Add("Other: "+receivedMessage);
+                    addText(receivedMessage, false);
                     playSound(1);
                 }
                 byte[] buffer = new byte[128];

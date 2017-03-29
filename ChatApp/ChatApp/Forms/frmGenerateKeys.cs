@@ -12,6 +12,9 @@ namespace ChatApp
 {
     public partial class frmGenerateKeys : Form
     {
+        public static bool frmActive = false;
+        public static string privateKey;
+
         public frmGenerateKeys()
         {
             InitializeComponent();
@@ -19,11 +22,22 @@ namespace ChatApp
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            string publicKey, privateKey;
+            string publicKey;
             RSATools.GenerateKeys(out publicKey, out privateKey);
             txtPublic.Text = publicKey;
             txtPrivate.Text = privateKey;
+            frmActive = true;
+
         }
-        
+
+        private void frmGenerateKeys_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmActive = false;
+        }
+
+        private void frmGenerateKeys_Load(object sender, EventArgs e)
+        {
+            this.Icon = Properties.Resources.key;
+        }
     }
 }

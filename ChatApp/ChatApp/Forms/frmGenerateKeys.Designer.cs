@@ -128,6 +128,8 @@
             this.MinimumSize = new System.Drawing.Size(150, 340);
             this.Name = "frmGenerateKeys";
             this.Text = "Generate Keys";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGenerateKeys_FormClosing);
+            this.Load += new System.EventHandler(this.frmGenerateKeys_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
