@@ -21,9 +21,12 @@ namespace ChatApp
         EndPoint epLocal, epRemote;
         public static bool encrypted = false;
         public static string remotesPublicKey;
-        public static string privateKey;
+        public static string privateKey, ipLocal, ipRemote, portLocal, portRemote;
         string Username;
         int dataSize;
+
+        frmConnection formCon = new frmConnection();
+        frmRSA form = new frmRSA();
 
         public frmMain()
         {
@@ -31,29 +34,17 @@ namespace ChatApp
             this.KeyPreview = true;
             
             sck.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            txtIPLocal.Text = getLocalIP();
-            txtIPForeign.Text = getLocalIP();
             btnSend.Enabled = false;
             playSound(2);
             Random rnd = new Random();
-            txtUserName.Text = "User" + rnd.Next(1, 1000);
+            txtUser.Text = "User" + rnd.Next(1, 1000);
             txtMessage.MaxLength = 100;
             dataSize = 128;
+            this.AcceptButton = btnSend;
+            lblStatus.ForeColor = Color.Red;
         }
         
-        private string getLocalIP()
-        {
-            IPHostEntry host;
-            host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach(IPAddress ip in host.AddressList)
-            {
-                if(ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            return "127.0.0.1";
-        }
+        
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
@@ -64,24 +55,22 @@ namespace ChatApp
         {
             try
             {
-                epLocal = new IPEndPoint(IPAddress.Parse(txtIPLocal.Text), Convert.ToInt32(txtPortLoacal.Text));
+                epLocal = new IPEndPoint(IPAddress.Parse(ipLocal), Convert.ToInt32(portLocal));
                 sck.Bind(epLocal);
 
-                epRemote = new IPEndPoint(IPAddress.Parse(txtIPForeign.Text), Convert.ToInt32(txtPortForeign.Text));
+                epRemote = new IPEndPoint(IPAddress.Parse(ipRemote), Convert.ToInt32(portRemote));
 
                 sck.Connect(epRemote);
                 byte[] buffer = new byte[dataSize];
                 sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
-                btnConnect.Text = "Connected";
-                btnConnect.Enabled = false;
+                
+                lblStatus.ForeColor = Color.Green;
                 btnSend.Enabled = true;
                 txtMessage.Focus();
             }
             catch (Exception exc)
             {
-                sck.Disconnect(false);
-                btnConnect.Text = "Connect";
-                btnConnect.Enabled = true;
+                //sck.Disconnect(false);
                 btnSend.Enabled = false;
                 Debug.WriteLine(exc.Message);
                 MessageBox.Show(exc.Message + Environment.NewLine + "Connection Error");
@@ -99,11 +88,11 @@ namespace ChatApp
 
         private void frmMain_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter && txtMessage.Text != string.Empty)
-            {
-                sendMessage(txtMessage.Text);
-                addText(txtMessage.Text, true);
-            }
+            //if (e.KeyData == Keys.Enter && txtMessage.Text != string.Empty)
+            //{
+            //    sendMessage(txtMessage.Text);
+            //    addText(txtMessage.Text, true);
+            //}
         }
 
         private void playSound(int soundID = 0)
@@ -112,17 +101,23 @@ namespace ChatApp
             switch (soundID)
             {
                 case 0:
-                    s = Properties.Resources.goodbye;
+                    s = Properties.Resources.ending;
                     break;
                 case 1:
-                    s = Properties.Resources.sms_alert;
+                    s = Properties.Resources.notification;
                     break;
                 case 2:
                     s = Properties.Resources.welcome;
                     break;
-                //case 3:
-                //    s = Properties.Resources.alert;
-                //    break;
+                case 3:
+                    s = Properties.Resources.ending2;
+                    break;
+                case 4:
+                    s = Properties.Resources.goodbye;
+                    break;
+                case 5:
+                    s = Properties.Resources.sms_alert;
+                    break;
                 default:
                     s = Properties.Resources.sms_alert;
                     break;
@@ -173,16 +168,34 @@ namespace ChatApp
             txtMessage.Clear();
             txtMessage.Focus();
         }
-        
-        frmGenerateKeys form = new frmGenerateKeys();
 
-        private void mnuGenerate_Click(object sender, EventArgs e)
+        
+        private void lblStatus_Click(object sender, EventArgs e)
         {
-            frmGenerateKeys.frmActive = true;
-            frmGenerateShow();
+            frmConnection.frmActive = true;
+            frmConShow();
         }
 
-        private void frmGenerateShow()
+        private void mnuConnect_Click(object sender, EventArgs e)
+        {
+            frmConnection.frmActive = true;
+            frmConShow();
+        }
+        private void mnuGenerate_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void frmConShow()
+        {
+            formCon.StartPosition = FormStartPosition.Manual;
+            if (this.WindowState == FormWindowState.Maximized) formCon.Location = new Point(this.Location.X, this.Location.Y);
+            else formCon.Location = new Point(this.Location.X - 200, this.Location.Y);
+            //formCon.Width = this.Width;
+            formCon.Show();
+        }
+
+        private void frmRSAShow()
         {
             form.StartPosition = FormStartPosition.Manual;
             if (this.WindowState == FormWindowState.Maximized) form.Location = new Point(this.Location.X, this.Location.Y);
@@ -193,10 +206,19 @@ namespace ChatApp
 
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
-            if (frmGenerateKeys.frmActive) frmGenerateShow();
-            else form.Hide();
-            Username = txtUserName.Text;
+            if (!frmConnection.frmActive) formCon.Hide();
+            if (!frmRSA.frmActive) form.Hide();
+
+            Username = txtUser.Text;
+            
+
+            if (frmConnection.Connect)
+            {
+                connect();
+                frmConnection.Connect = false;
+            }
         }
+        
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -206,32 +228,22 @@ namespace ChatApp
 
         private void frmMain_LocationChanged(object sender, EventArgs e)
         {
-            if (frmGenerateKeys.frmActive) frmGenerateShow();
+            if (frmRSA.frmActive) frmRSAShow();
             else form.Hide();
+            if (frmConnection.frmActive) frmConShow();
+            else formCon.Hide();
         }
 
-        private void mnuProperties_CheckedChanged(object sender, EventArgs e)
+        private void mnuEncrypt_Click(object sender, EventArgs e)
         {
-            pnlProperties.Visible = mnuProperties.Checked;
-            if (!mnuProperties.Checked)
-            {
-                rtxtHistory.Location = new Point(rtxtHistory.Location.X , rtxtHistory.Location.Y - 75);
-                rtxtHistory.Height += 75;
-            }
-            else
-            {
-                rtxtHistory.Location = new Point(rtxtHistory.Location.X, rtxtHistory.Location.Y + 75);
-                rtxtHistory.Height -= 75;
-            }
-            
-            
+            frmRSA.frmActive = true;
+            frmRSAShow();
         }
 
-        private void mnuProperties_Click(object sender, EventArgs e)
-        {
-            mnuProperties.Checked = !mnuProperties.Checked;
-        }
         bool flag = true;
+
+        
+
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
 
@@ -254,10 +266,13 @@ namespace ChatApp
         public async void WaitSomeTime()
         {
             playSound(0);
+            formCon.Close();
+            form.Close();
             await Task.Delay(3000);
             flag = false;
-            Application.Exit();
+            this.Close();
         }
+        
 
         private void messageCallBack(IAsyncResult aResult)
         {
