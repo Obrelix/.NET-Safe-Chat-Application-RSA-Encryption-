@@ -42,12 +42,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPortForeign = new System.Windows.Forms.TextBox();
             this.txtIPForeign = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtRemotesPublic = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtUsersPrivate = new System.Windows.Forms.TextBox();
-            this.btnActivate = new System.Windows.Forms.Button();
             this.tmrCheck = new System.Windows.Forms.Timer(this.components);
             this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,26 +53,25 @@
             this.pnlProperties = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.mnuMain.SuspendLayout();
             this.pnlProperties.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.groupBox1.BackColor = System.Drawing.Color.CadetBlue;
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPortLoacal);
             this.groupBox1.Controls.Add(this.txtIPLocal);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(3, 79);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(150, 70);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Local";
+            this.groupBox1.Text = "Local Chat";
             // 
             // label2
             // 
@@ -118,10 +111,10 @@
             // btnConnect
             // 
             this.btnConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnConnect.Location = new System.Drawing.Point(507, 128);
+            this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnConnect.Location = new System.Drawing.Point(291, 43);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(150, 25);
+            this.btnConnect.Size = new System.Drawing.Size(104, 28);
             this.btnConnect.TabIndex = 6;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -132,39 +125,40 @@
             this.txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtMessage.Location = new System.Drawing.Point(44, 387);
+            this.txtMessage.Location = new System.Drawing.Point(44, 348);
             this.txtMessage.MaxLength = 100;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(498, 22);
+            this.txtMessage.Size = new System.Drawing.Size(398, 22);
             this.txtMessage.TabIndex = 7;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnSend.Location = new System.Drawing.Point(548, 386);
+            this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.btnSend.Location = new System.Drawing.Point(448, 347);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(150, 25);
             this.btnSend.TabIndex = 8;
-            this.btnSend.Text = "Send";
+            this.btnSend.Text = "&Send";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BackColor = System.Drawing.Color.CadetBlue;
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.txtPortForeign);
             this.groupBox2.Controls.Add(this.txtIPForeign);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Location = new System.Drawing.Point(401, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(150, 70);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Foreign";
+            this.groupBox2.Text = "Remote Chat";
             // 
             // label3
             // 
@@ -201,80 +195,6 @@
             this.txtIPForeign.TabIndex = 0;
             this.txtIPForeign.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.txtRemotesPublic);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.txtUsersPrivate);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.groupBox3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox3.Location = new System.Drawing.Point(159, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(495, 93);
-            this.groupBox3.TabIndex = 15;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Add RSA Encryption Keys";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label5.Location = new System.Drawing.Point(316, 52);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 15);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Remote User\'s Public Key";
-            // 
-            // txtRemotesPublic
-            // 
-            this.txtRemotesPublic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRemotesPublic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtRemotesPublic.Location = new System.Drawing.Point(6, 67);
-            this.txtRemotesPublic.MaxLength = 327670;
-            this.txtRemotesPublic.Name = "txtRemotesPublic";
-            this.txtRemotesPublic.PasswordChar = '*';
-            this.txtRemotesPublic.Size = new System.Drawing.Size(483, 20);
-            this.txtRemotesPublic.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label6.Location = new System.Drawing.Point(366, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "User\'s Private Key";
-            // 
-            // txtUsersPrivate
-            // 
-            this.txtUsersPrivate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUsersPrivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtUsersPrivate.Location = new System.Drawing.Point(6, 31);
-            this.txtUsersPrivate.MaxLength = 327670;
-            this.txtUsersPrivate.Name = "txtUsersPrivate";
-            this.txtUsersPrivate.PasswordChar = '*';
-            this.txtUsersPrivate.Size = new System.Drawing.Size(483, 20);
-            this.txtUsersPrivate.TabIndex = 9;
-            // 
-            // btnActivate
-            // 
-            this.btnActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnActivate.Location = new System.Drawing.Point(507, 97);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(150, 25);
-            this.btnActivate.TabIndex = 12;
-            this.btnActivate.Text = "Activate Encryption";
-            this.btnActivate.UseVisualStyleBackColor = true;
-            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
-            // 
             // tmrCheck
             // 
             this.tmrCheck.Enabled = true;
@@ -282,13 +202,13 @@
             // 
             // mnuMain
             // 
-            this.mnuMain.BackColor = System.Drawing.Color.DimGray;
+            this.mnuMain.BackColor = System.Drawing.Color.DarkGray;
             this.mnuMain.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
-            this.mnuMain.Size = new System.Drawing.Size(744, 25);
+            this.mnuMain.Size = new System.Drawing.Size(644, 25);
             this.mnuMain.TabIndex = 16;
             this.mnuMain.Text = "menuStrip1";
             // 
@@ -304,8 +224,8 @@
             // mnuGenerate
             // 
             this.mnuGenerate.Name = "mnuGenerate";
-            this.mnuGenerate.Size = new System.Drawing.Size(163, 22);
-            this.mnuGenerate.Text = "&Generate Keys";
+            this.mnuGenerate.Size = new System.Drawing.Size(171, 22);
+            this.mnuGenerate.Text = "&RSA Encryption";
             this.mnuGenerate.Click += new System.EventHandler(this.mnuGenerate_Click);
             // 
             // mnuProperties
@@ -324,19 +244,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtHistory.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtHistory.Location = new System.Drawing.Point(44, 189);
+            this.rtxtHistory.Location = new System.Drawing.Point(44, 110);
             this.rtxtHistory.Name = "rtxtHistory";
             this.rtxtHistory.ReadOnly = true;
-            this.rtxtHistory.Size = new System.Drawing.Size(654, 192);
+            this.rtxtHistory.Size = new System.Drawing.Size(554, 235);
             this.rtxtHistory.TabIndex = 13;
             this.rtxtHistory.Text = "";
             // 
             // txtUserName
             // 
-            this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.txtUserName.Location = new System.Drawing.Point(251, 129);
+            this.txtUserName.Location = new System.Drawing.Point(159, 45);
             this.txtUserName.MaxLength = 8;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(98, 22);
@@ -347,41 +265,39 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label7.Location = new System.Drawing.Point(159, 132);
+            this.label7.Location = new System.Drawing.Point(159, 26);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 16);
+            this.label7.Size = new System.Drawing.Size(86, 16);
             this.label7.TabIndex = 4;
-            this.label7.Text = "User Name:";
+            this.label7.Text = "User Name";
             // 
             // pnlProperties
             // 
             this.pnlProperties.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlProperties.Controls.Add(this.groupBox3);
             this.pnlProperties.Controls.Add(this.label7);
             this.pnlProperties.Controls.Add(this.groupBox1);
-            this.pnlProperties.Controls.Add(this.btnActivate);
-            this.pnlProperties.Controls.Add(this.txtUserName);
             this.pnlProperties.Controls.Add(this.btnConnect);
+            this.pnlProperties.Controls.Add(this.txtUserName);
             this.pnlProperties.Controls.Add(this.groupBox2);
-            this.pnlProperties.Location = new System.Drawing.Point(44, 28);
+            this.pnlProperties.Location = new System.Drawing.Point(44, 31);
             this.pnlProperties.Name = "pnlProperties";
-            this.pnlProperties.Size = new System.Drawing.Size(654, 150);
+            this.pnlProperties.Size = new System.Drawing.Size(554, 75);
             this.pnlProperties.TabIndex = 18;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(744, 421);
+            this.BackColor = System.Drawing.Color.CadetBlue;
+            this.ClientSize = new System.Drawing.Size(644, 382);
             this.Controls.Add(this.pnlProperties);
             this.Controls.Add(this.rtxtHistory);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.mnuMain);
             this.MainMenuStrip = this.mnuMain;
-            this.MinimumSize = new System.Drawing.Size(660, 460);
+            this.MinimumSize = new System.Drawing.Size(660, 280);
             this.Name = "frmMain";
             this.Text = "Safe Chat";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -391,8 +307,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();
             this.pnlProperties.ResumeLayout(false);
@@ -417,12 +331,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPortForeign;
         private System.Windows.Forms.TextBox txtIPForeign;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnActivate;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtUsersPrivate;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtRemotesPublic;
         private System.Windows.Forms.Timer tmrCheck;
         private System.Windows.Forms.MenuStrip mnuMain;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;

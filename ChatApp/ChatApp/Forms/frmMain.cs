@@ -19,6 +19,8 @@ namespace ChatApp
         Socket sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         EndPoint epLocal, epRemote;
         public static bool encrypted = false;
+        public static string remotesPublicKey;
+        public static string privateKey;
         string Username;
         int dataSize;
 
@@ -125,7 +127,7 @@ namespace ChatApp
                 ASCIIEncoding enc = new ASCIIEncoding();
                 byte[] msg = new byte[dataSize];
                 msg = enc.GetBytes(Username + "</User>" + txtmessage);
-                if (encrypted) msg = RSATools.RSAEncrypt(msg, txtRemotesPublic.Text, false);
+                if (encrypted) msg = RSATools.RSAEncrypt(msg, remotesPublicKey, false);
                 sck.Send(msg);
                 
             }
@@ -172,14 +174,7 @@ namespace ChatApp
         
 
 
-        private void btnActivate_Click(object sender, EventArgs e)
-        {
-            encrypted = !encrypted;
-            btnActivate.Text = (!encrypted) ? "Activate Encryption" : "Deactivate Encryption";
-            //dataSize = (encrypted) ? 128 : 1500;
-            //txtMessage.MaxLength = (encrypted) ? 100 : 1480;
-            //if (encrypted) MessageBox.Show("Message length decreasing to 100 characters per message!!", "Message Length Decreased", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
+        
         frmGenerateKeys form = new frmGenerateKeys();
 
         private void mnuGenerate_Click(object sender, EventArgs e)
@@ -192,14 +187,14 @@ namespace ChatApp
         {
             form.StartPosition = FormStartPosition.Manual;
             if (this.WindowState == FormWindowState.Maximized) form.Location = new Point(this.Location.X, this.Location.Y);
-            else form.Location = new Point(this.Location.X, this.Location.Y + this.Height);
-            form.Width = this.Width;
+            else form.Location = new Point(this.Location.X + this.Width, this.Location.Y);
+            //form.Width = this.Width;
             form.Show();
         }
 
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
-            if (frmGenerateKeys.frmActive) txtUsersPrivate.Text = frmGenerateKeys.privateKey;
+            if (frmGenerateKeys.frmActive) frmGenerateShow();
             else form.Hide();
             Username = txtUserName.Text;
         }
@@ -221,13 +216,13 @@ namespace ChatApp
             pnlProperties.Visible = mnuProperties.Checked;
             if (!mnuProperties.Checked)
             {
-                rtxtHistory.Location = new Point(rtxtHistory.Location.X , rtxtHistory.Location.Y - 150);
-                rtxtHistory.Height += 150;
+                rtxtHistory.Location = new Point(rtxtHistory.Location.X , rtxtHistory.Location.Y - 75);
+                rtxtHistory.Height += 75;
             }
             else
             {
-                rtxtHistory.Location = new Point(rtxtHistory.Location.X, rtxtHistory.Location.Y + 150);
-                rtxtHistory.Height -= 150;
+                rtxtHistory.Location = new Point(rtxtHistory.Location.X, rtxtHistory.Location.Y + 75);
+                rtxtHistory.Height -= 75;
             }
             
             
@@ -246,7 +241,7 @@ namespace ChatApp
                 if(size > 0)
                 {
                     byte[] receivedData = (byte[])aResult.AsyncState;
-                    if (encrypted) receivedData = RSATools.RSADecrypt(receivedData, txtUsersPrivate.Text, false);
+                    if (encrypted) receivedData = RSATools.RSADecrypt(receivedData, privateKey, false);
                     ASCIIEncoding eEnconding = new ASCIIEncoding();
                     string receivedMessage = eEnconding.GetString(receivedData);
                     addText(receivedMessage, false);
