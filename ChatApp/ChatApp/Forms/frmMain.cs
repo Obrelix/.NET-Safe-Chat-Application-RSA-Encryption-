@@ -14,6 +14,20 @@ using System.Media;
 
 namespace ChatApp
 {
+    public static class RichTextBoxExtensions
+    {
+        
+        public static void AppendText(this RichTextBox box, string text, Color color)
+        {
+            box.SelectionStart = box.TextLength;
+            box.SelectionLength = 0;
+            
+            box.SelectionColor = color;
+            box.AppendText(text);
+            box.SelectionColor = box.ForeColor;
+        }
+    }
+
     public partial class frmMain : Form
     {
         Socket sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -57,8 +71,6 @@ namespace ChatApp
         private void btnConnect_Click(object sender, EventArgs e)
         {
             connect();
-            //Username = txtUserName.Text;
-            //txtUserName.Enabled = false;
         }
 
         private void connect()
@@ -91,8 +103,20 @@ namespace ChatApp
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            sendMessage(txtMessage.Text);
-            addText(txtMessage.Text, true);
+            if(txtMessage.Text != string.Empty)
+            {
+                sendMessage(txtMessage.Text);
+                addText(txtMessage.Text, true);
+            }
+        }
+
+        private void frmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter && txtMessage.Text != string.Empty)
+            {
+                sendMessage(txtMessage.Text);
+                addText(txtMessage.Text, true);
+            }
         }
 
         private void playSound(int soundID = 0)
@@ -129,7 +153,6 @@ namespace ChatApp
                 msg = enc.GetBytes(Username + "</User>" + txtmessage);
                 if (encrypted) msg = RSATools.RSAEncrypt(msg, remotesPublicKey, false);
                 sck.Send(msg);
-                
             }
             catch (Exception exc)
             {
@@ -142,19 +165,21 @@ namespace ChatApp
         {
             if (me)
             {
-                rtxtHistory.Select(rtxtHistory.TextLength, 0);
-                rtxtHistory.SelectionColor = Color.Green;
-                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ","") + "] Me:  "+ txt );
-                rtxtHistory.SelectionAlignment = HorizontalAlignment.Left ;
+                rtxtHistory.AppendText("[" + DateTime.Now.ToShortTimeString() + "]", Color.Black);
+                rtxtHistory.AppendText(" ");
+                rtxtHistory.AppendText(Username, Color.DarkGreen);
+                rtxtHistory.AppendText(": ");
+                rtxtHistory.AppendText(txt, Color.Green);
+                rtxtHistory.AppendText(Environment.NewLine);
             }
             else
             {
-                rtxtHistory.Select(rtxtHistory.TextLength, 0);
-                rtxtHistory.SelectionColor = Color.Red;
-                rtxtHistory.AppendText(Environment.NewLine + "[" + DateTime.Now.ToShortTimeString().Replace(" ", "") + "] " +
-                    txt.Split(new string[] { "</User>" }, StringSplitOptions.None).First() + ":  " + 
-                    txt.Split(new string[] { "</User>" }, StringSplitOptions.None).Last());
-                rtxtHistory.SelectionAlignment = HorizontalAlignment.Left;
+                rtxtHistory.AppendText("[" + DateTime.Now.ToShortTimeString() + "]", Color.Black);
+                rtxtHistory.AppendText(" ");
+                rtxtHistory.AppendText(txt.Split(new string[] { "</User>" }, StringSplitOptions.None).First(), Color.DarkOrange);
+                rtxtHistory.AppendText(": "); 
+                rtxtHistory.AppendText(txt.Split(new string[] { "</User>" }, StringSplitOptions.None).Last(), Color.Orange);
+                rtxtHistory.AppendText(Environment.NewLine);
             }
             rtxtHistory.SelectionStart = rtxtHistory.Text.Length;
             rtxtHistory.ScrollToCaret();
@@ -163,14 +188,7 @@ namespace ChatApp
         }
 
 
-        private void frmMain_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyData == Keys.Enter)
-            {
-                sendMessage(txtMessage.Text);
-                addText(txtMessage.Text, true);
-            }
-        }
+        
         
 
 
