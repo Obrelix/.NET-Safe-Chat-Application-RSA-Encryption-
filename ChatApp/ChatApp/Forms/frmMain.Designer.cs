@@ -233,7 +233,7 @@
             this.mnuProperties.Checked = true;
             this.mnuProperties.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuProperties.Name = "mnuProperties";
-            this.mnuProperties.Size = new System.Drawing.Size(163, 22);
+            this.mnuProperties.Size = new System.Drawing.Size(171, 22);
             this.mnuProperties.Text = "&Properties";
             this.mnuProperties.CheckedChanged += new System.EventHandler(this.mnuProperties_CheckedChanged);
             this.mnuProperties.Click += new System.EventHandler(this.mnuProperties_Click);
@@ -300,6 +300,8 @@
             this.MinimumSize = new System.Drawing.Size(660, 280);
             this.Name = "frmMain";
             this.Text = "Safe Chat";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.LocationChanged += new System.EventHandler(this.frmMain_LocationChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMain_KeyDown);

@@ -11,23 +11,10 @@ using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
 using System.Media;
+using System.Threading;
 
 namespace ChatApp
 {
-    public static class RichTextBoxExtensions
-    {
-        
-        public static void AppendText(this RichTextBox box, string text, Color color)
-        {
-            box.SelectionStart = box.TextLength;
-            box.SelectionLength = 0;
-            
-            box.SelectionColor = color;
-            box.AppendText(text);
-            box.SelectionColor = box.ForeColor;
-        }
-    }
-
     public partial class frmMain : Form
     {
         Socket sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -125,17 +112,17 @@ namespace ChatApp
             switch (soundID)
             {
                 case 0:
-                    s = Properties.Resources.chime_tone;
+                    s = Properties.Resources.goodbye;
                     break;
                 case 1:
                     s = Properties.Resources.sms_alert;
                     break;
                 case 2:
-                    s = Properties.Resources.iv_notification;
+                    s = Properties.Resources.welcome;
                     break;
-                case 3:
-                    s = Properties.Resources.alert;
-                    break;
+                //case 3:
+                //    s = Properties.Resources.alert;
+                //    break;
                 default:
                     s = Properties.Resources.sms_alert;
                     break;
@@ -186,12 +173,6 @@ namespace ChatApp
             txtMessage.Clear();
             txtMessage.Focus();
         }
-
-
-        
-        
-
-
         
         frmGenerateKeys form = new frmGenerateKeys();
 
@@ -250,6 +231,33 @@ namespace ChatApp
         {
             mnuProperties.Checked = !mnuProperties.Checked;
         }
+        bool flag = true;
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            WaitSomeTime();
+            e.Cancel = flag;
+            
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //var thread = new Thread(DoTask)
+            //{
+            //    IsBackground = false,
+            //    Name = "Closing thread.",
+            //};
+            //thread.Start();
+
+            //base.OnFormClosed(e);
+        }
+        public async void WaitSomeTime()
+        {
+            playSound(0);
+            await Task.Delay(3000);
+            flag = false;
+            Application.Exit();
+        }
 
         private void messageCallBack(IAsyncResult aResult)
         {
@@ -276,5 +284,19 @@ namespace ChatApp
 
         }
 
+    }
+
+    public static class RichTextBoxExtensions
+    {
+
+        public static void AppendText(this RichTextBox box, string text, Color color)
+        {
+            box.SelectionStart = box.TextLength;
+            box.SelectionLength = 0;
+
+            box.SelectionColor = color;
+            box.AppendText(text);
+            box.SelectionColor = box.ForeColor;
+        }
     }
 }

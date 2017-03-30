@@ -61,15 +61,6 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream alert {
-            get {
-                return ResourceManager.GetStream("alert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon chat {
@@ -82,18 +73,9 @@ namespace ChatApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream chime_tone {
+        internal static System.IO.UnmanagedMemoryStream goodbye {
             get {
-                return ResourceManager.GetStream("chime_tone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream iv_notification {
-            get {
-                return ResourceManager.GetStream("iv_notification", resourceCulture);
+                return ResourceManager.GetStream("goodbye", resourceCulture);
             }
         }
         
@@ -108,21 +90,20 @@ namespace ChatApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap publickey {
+        internal static System.IO.UnmanagedMemoryStream sms_alert {
             get {
-                object obj = ResourceManager.GetObject("publickey", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("sms_alert", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream sms_alert {
+        internal static System.IO.UnmanagedMemoryStream welcome {
             get {
-                return ResourceManager.GetStream("sms_alert", resourceCulture);
+                return ResourceManager.GetStream("welcome", resourceCulture);
             }
         }
     }
