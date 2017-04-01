@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,7 +8,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Diagnostics;
 using System.Media;
-using System.Threading;
 
 namespace ChatApp
 {
@@ -19,7 +15,7 @@ namespace ChatApp
     {
         Socket sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         EndPoint epLocal, epRemote;
-        public static bool encrypted = false;
+        public static bool encrypted = false, connected;
         public static string remotesPublicKey;
         public static string privateKey, ipLocal, ipRemote, portLocal, portRemote;
         string Username;
@@ -32,16 +28,13 @@ namespace ChatApp
         {
             InitializeComponent();
             this.KeyPreview = true;
-            
-            sck.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-            btnSend.Enabled = false;
             playSound(2);
             Random rnd = new Random();
             txtUser.Text = "User" + rnd.Next(1, 1000);
             txtMessage.MaxLength = 100;
             dataSize = 128;
+            sck.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             this.AcceptButton = btnSend;
-            lblStatus.ForeColor = Color.Red;
         }
         
         
@@ -55,6 +48,8 @@ namespace ChatApp
         {
             try
             {
+                   
+                    
                 epLocal = new IPEndPoint(IPAddress.Parse(ipLocal), Convert.ToInt32(portLocal));
                 sck.Bind(epLocal);
 
@@ -63,19 +58,41 @@ namespace ChatApp
                 sck.Connect(epRemote);
                 byte[] buffer = new byte[dataSize];
                 sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
-                
-                lblStatus.ForeColor = Color.Green;
-                btnSend.Enabled = true;
-                txtMessage.Focus();
             }
             catch (Exception exc)
             {
-                //sck.Disconnect(false);
-                btnSend.Enabled = false;
                 Debug.WriteLine(exc.Message);
                 MessageBox.Show(exc.Message + Environment.NewLine + "Connection Error");
+               
             }
         }
+
+
+        private void messageCallBack(IAsyncResult aResult)
+        {
+            try
+            {
+                int size = sck.EndReceiveFrom(aResult, ref epRemote);
+                if (size > 0)
+                {
+                    byte[] receivedData = (byte[])aResult.AsyncState;
+                    if (encrypted) receivedData = RSATools.RSADecrypt(receivedData, privateKey, false);
+                    ASCIIEncoding eEnconding = new ASCIIEncoding();
+                    string receivedMessage = eEnconding.GetString(receivedData);
+                    addText(receivedMessage, false);
+                    playSound(1);
+                }
+                byte[] buffer = new byte[dataSize];
+                sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+            }
+            catch (Exception exc)
+            {
+                Debug.WriteLine(exc.Message);
+                MessageBox.Show(exc.Message + "   callBack");
+            }
+
+        }
+
 
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -210,15 +227,35 @@ namespace ChatApp
             if (!frmRSA.frmActive) form.Hide();
 
             Username = txtUser.Text;
-            
-
+            buttonInit();
             if (frmConnection.Connect)
             {
                 connect();
                 frmConnection.Connect = false;
             }
         }
-        
+
+
+        private void buttonInit()
+        {
+            if (sck.Connected)
+            {
+                lblStatus.ForeColor = Color.Green;
+                btnSend.Enabled = true;
+                txtMessage.Enabled = true;
+                //txtMessage.Focus();
+                connected = true;
+            }
+            else
+            {
+                lblStatus.ForeColor = Color.Red;
+                btnSend.Enabled = false;
+                txtMessage.Enabled = false;
+                connected = false;
+            }
+
+        }
+
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -274,30 +311,7 @@ namespace ChatApp
         }
         
 
-        private void messageCallBack(IAsyncResult aResult)
-        {
-            try
-            {
-                int size = sck.EndReceiveFrom(aResult, ref epRemote);
-                if(size > 0)
-                {
-                    byte[] receivedData = (byte[])aResult.AsyncState;
-                    if (encrypted) receivedData = RSATools.RSADecrypt(receivedData, privateKey, false);
-                    ASCIIEncoding eEnconding = new ASCIIEncoding();
-                    string receivedMessage = eEnconding.GetString(receivedData);
-                    addText(receivedMessage, false);
-                    playSound(1);
-                }
-                byte[] buffer = new byte[dataSize];
-                sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
-            }
-            catch(Exception exc)
-            {
-                Debug.WriteLine(exc.Message);
-                MessageBox.Show(exc.Message + "   callBack");
-            }
-
-        }
+       
 
     }
 

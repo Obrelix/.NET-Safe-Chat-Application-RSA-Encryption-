@@ -39,7 +39,6 @@ namespace ChatApp
         private void frmConnection_Load(object sender, EventArgs e)
         {
             frmActive = true;
-            
             this.Icon = Properties.Resources.connection;
         }
 
@@ -57,8 +56,17 @@ namespace ChatApp
             frmMain.ipRemote = txtIPForeign.Text;
             frmMain.portRemote = txtPortForeign.Text;
             Connect = true;
-            btnConnect.Enabled = false;
-
         }
+
+        private void tmrCheck_Tick(object sender, EventArgs e)
+        {
+            buttonInit();
+        }
+
+        private void buttonInit()
+        {
+            btnConnect.Enabled =(frmMain.connected) ? false : true;
+            btnConnect.Text = (frmMain.connected) ? "Connected" : "Connect";
+         }
     }
 }

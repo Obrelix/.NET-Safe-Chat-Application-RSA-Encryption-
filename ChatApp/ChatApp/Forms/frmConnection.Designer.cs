@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPortForeign = new System.Windows.Forms.TextBox();
             this.txtIPForeign = new System.Windows.Forms.TextBox();
+            this.tmrCheck = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -156,6 +158,11 @@
             this.txtIPForeign.TabIndex = 0;
             this.txtIPForeign.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // tmrCheck
+            // 
+            this.tmrCheck.Enabled = true;
+            this.tmrCheck.Tick += new System.EventHandler(this.tmrCheck_Tick);
+            // 
             // frmConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,5 +203,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPortForeign;
         private System.Windows.Forms.TextBox txtIPForeign;
+        private System.Windows.Forms.Timer tmrCheck;
     }
 }
