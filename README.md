@@ -1,7 +1,16 @@
 # .NET-Safe-Chat-Application-RSA-Encryption-
-A chat application that can ecnrypt messages with remote user's public Key and decrypt messages with local user's private Key
+
+![alt tag](https://raw.githubusercontent.com/Obrelix/.NET-Safe-Chat-Application-RSA-Encryption-/master/images/SamplePicture3.PNG)
 
 
-![alt tag](https://raw.githubusercontent.com/Obrelix/.NET-Safe-Chat-Application-RSA-Encryption-/master/images/SamplePicture1.PNG)
+A chat application writen in C# based on Socket and RSA  Cryptografy.
 
-![alt tag](https://raw.githubusercontent.com/Obrelix/.NET-Safe-Chat-Application-RSA-Encryption-/master/images/SamplePicture2.PNG)
+# Features
+
+1) Communicating without Server Connection .
+
+2) Making use of RSA Encryption in order to encrypt the sending messages with interlocutor's public Key.
+
+3) Communicating Asynchronous.
+
+4) Alert with sounds whenever a message arrives 
