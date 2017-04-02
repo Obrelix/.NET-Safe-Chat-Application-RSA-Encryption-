@@ -159,6 +159,7 @@
             // 
             // frmRSA
             // 
+            this.AcceptButton = this.btnActivate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
@@ -169,7 +170,7 @@
             this.MaximumSize = new System.Drawing.Size(10000, 350);
             this.MinimumSize = new System.Drawing.Size(300, 280);
             this.Name = "frmRSA";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "RSA Cryptography";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmGenerateKeys_FormClosing);
             this.Load += new System.EventHandler(this.frmGenerateKeys_Load);
