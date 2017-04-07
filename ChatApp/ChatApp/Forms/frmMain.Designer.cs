@@ -50,16 +50,16 @@
             this.txtMessage.Location = new System.Drawing.Point(16, 200);
             this.txtMessage.MaxLength = 100;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(204, 22);
+            this.txtMessage.Size = new System.Drawing.Size(260, 22);
             this.txtMessage.TabIndex = 7;
             // 
             // btnSend
             // 
             this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.btnSend.Location = new System.Drawing.Point(230, 198);
+            this.btnSend.Location = new System.Drawing.Point(284, 200);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(200, 29);
+            this.btnSend.Size = new System.Drawing.Size(200, 22);
             this.btnSend.TabIndex = 8;
             this.btnSend.Text = "&Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -81,7 +81,7 @@
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
             this.mnuMain.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.mnuMain.Size = new System.Drawing.Size(446, 36);
+            this.mnuMain.Size = new System.Drawing.Size(502, 36);
             this.mnuMain.TabIndex = 16;
             this.mnuMain.Text = "Menu";
             // 
@@ -120,7 +120,7 @@
             this.rtxtHistory.Location = new System.Drawing.Point(16, 51);
             this.rtxtHistory.Name = "rtxtHistory";
             this.rtxtHistory.ReadOnly = true;
-            this.rtxtHistory.Size = new System.Drawing.Size(412, 141);
+            this.rtxtHistory.Size = new System.Drawing.Size(468, 141);
             this.rtxtHistory.TabIndex = 13;
             this.rtxtHistory.Text = "";
             this.rtxtHistory.Click += new System.EventHandler(this.mnuGenerate_Click);
@@ -132,9 +132,9 @@
             this.lblStatus.BackColor = System.Drawing.Color.DarkGray;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.lblStatus.ForeColor = System.Drawing.Color.Red;
-            this.lblStatus.Location = new System.Drawing.Point(407, 6);
+            this.lblStatus.Location = new System.Drawing.Point(463, 6);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(24, 24);
+            this.lblStatus.Size = new System.Drawing.Size(30, 24);
             this.lblStatus.TabIndex = 20;
             this.lblStatus.Text = "■";
             this.lblStatus.Click += new System.EventHandler(this.lblStatus_Click);
@@ -146,7 +146,7 @@
             this.label2.BackColor = System.Drawing.Color.DarkGray;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.label2.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.label2.Location = new System.Drawing.Point(354, 10);
+            this.label2.Location = new System.Drawing.Point(410, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 21;
@@ -158,7 +158,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CadetBlue;
-            this.ClientSize = new System.Drawing.Size(446, 241);
+            this.ClientSize = new System.Drawing.Size(502, 242);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.rtxtHistory);

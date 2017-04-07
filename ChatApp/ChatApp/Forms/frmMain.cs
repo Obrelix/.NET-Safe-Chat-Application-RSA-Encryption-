@@ -32,7 +32,7 @@ namespace ChatApp
             Random rnd = new Random();
             txtUser.Text = "User" + rnd.Next(1, 1000);
             txtMessage.MaxLength = 100;
-            dataSize = 128;
+            dataSize = 256;
             sck.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             this.AcceptButton = btnSend;
         }
@@ -48,8 +48,6 @@ namespace ChatApp
         {
             try
             {
-                   
-                    
                 epLocal = new IPEndPoint(IPAddress.Parse(ipLocal), Convert.ToInt32(portLocal));
                 sck.Bind(epLocal);
 
@@ -150,7 +148,10 @@ namespace ChatApp
                 ASCIIEncoding enc = new ASCIIEncoding();
                 byte[] msg = new byte[dataSize];
                 msg = enc.GetBytes(Username + "</User>" + txtmessage);
-                if (encrypted) msg = RSATools.RSAEncrypt(msg, remotesPublicKey, false);
+                if (encrypted)
+                {
+                    msg = RSATools.RSAEncrypt(msg, remotesPublicKey, false);
+                }
                 sck.Send(msg);
             }
             catch (Exception exc)
@@ -283,10 +284,8 @@ namespace ChatApp
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             WaitSomeTime();
             e.Cancel = flag;
-            
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)

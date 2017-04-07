@@ -18,3 +18,14 @@ C:\Users\Obrelix\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp
 C:\Users\Obrelix\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.frmMain.resources
 C:\Users\Obrelix\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.frmRSA.resources
 C:\Users\Obrelix\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.frmConnection.resources
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\bin\Debug\ChatApp.exe.config
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.exe
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.pdb
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\bin\Debug\ChatApp.exe
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\bin\Debug\ChatApp.pdb
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.csprojResolveAssemblyReference.cache
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.frmRSA.resources
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.frmMain.resources
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.frmConnection.resources
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.Properties.Resources.resources
+C:\Users\tataki\Source\Repos\.NET-Safe-Chat-Application-RSA-Encryption-\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.GenerateResource.Cache

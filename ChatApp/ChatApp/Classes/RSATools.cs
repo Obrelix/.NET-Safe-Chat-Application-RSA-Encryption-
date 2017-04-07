@@ -19,7 +19,7 @@ namespace ChatApp
             {
                 //Create a new instance of RSACryptoServiceProvider to generate
                 //public and private key data.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048))
                 {
                     try
                     {
@@ -48,7 +48,7 @@ namespace ChatApp
             {
                 byte[] encryptedData;
                 //Create a new instance of RSACryptoServiceProvider.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048))
                 {
                     try
                     {
@@ -87,7 +87,7 @@ namespace ChatApp
                 byte[] decryptedData = new byte[128];
                 //MessageBox.Show("Data lenght" + DataToDecrypt.Length.ToString());
                 //Create a new instance of RSACryptoServiceProvider.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048))
                 {
                     try
                     {
