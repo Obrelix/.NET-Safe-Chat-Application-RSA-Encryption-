@@ -31,7 +31,7 @@ namespace ChatApp
             playSound(2);
             Random rnd = new Random();
             txtUser.Text = "User" + rnd.Next(1, 1000);
-            txtMessage.MaxLength = 100;
+            txtMessage.MaxLength = 220;
             dataSize = 256;
             sck.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             this.AcceptButton = btnSend;

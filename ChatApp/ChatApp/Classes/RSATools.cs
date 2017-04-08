@@ -84,7 +84,7 @@ namespace ChatApp
         {
             try
             {
-                byte[] decryptedData = new byte[128];
+                byte[] decryptedData = new byte[256];
                 //MessageBox.Show("Data lenght" + DataToDecrypt.Length.ToString());
                 //Create a new instance of RSACryptoServiceProvider.
                 using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048))
