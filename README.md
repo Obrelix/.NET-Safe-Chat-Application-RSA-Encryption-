@@ -3,7 +3,7 @@
 ![alt tag](https://raw.githubusercontent.com/Obrelix/.NET-Safe-Chat-Application-RSA-Encryption-/master/images/SamplePicture3.PNG)
 
 
-A chat application writen in C# based on Socket and RSA  Cryptografy.
+A chat application writen in C# based on the Socket and RSA  Cryptografy.
 
 # Features
 
